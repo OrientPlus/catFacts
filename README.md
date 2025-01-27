@@ -7,8 +7,9 @@ docker compose build
 docker compose up
 ```
 
-###Описание сервисов
-##caxfaxService1
+### Описание сервисов
+
+## caxfaxService1
 Ожидает запросы на получение факта через брокер сообщений.
 
 После получения запроса:
@@ -16,6 +17,6 @@ docker compose up
 * Сохраняет полученный ответ в БД PostgreSQL.
 * Отправляет ответ в caxfaxService2 через брокер сообщений Kafka.
 
-##caxfaxService2
+## caxfaxService2
 С заданным интервалом отправляет запросы сервису caxfaxService1 через брокера сообщений.
 Получает ответ от caxfaxService1 и выводит его в stdout.
