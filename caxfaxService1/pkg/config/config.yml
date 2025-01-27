@@ -1,0 +1,13 @@
+db_host: postgres
+db_port: 5432
+db_user: caxfax
+db_password: caxfaxpass
+db_name: caxfax
+broker_consumer_host: kafka
+broker_consumer_port: 9092
+
+logger_config:
+  path: ./logs/
+  level: debug
+  name: logs-app.txt
+  consolewrite: true

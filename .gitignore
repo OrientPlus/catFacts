@@ -1,0 +1,53 @@
+# Go стандартные исключения
+/bin/
+#/pkg/
+/build/
+
+# Временные файлы
+*.exe
+*.dll
+*.so
+*.dylib
+*.out
+*.log
+
+# Сборка Go
+*.test
+*.prof
+*.tmp
+
+# Модули и зависимости Go
+vendor/
+go.sum
+
+# IDE GoLand
+.idea/
+*.iml
+
+# Кэш и настройки GoLand
+/.idea/*
+!.idea/workspace.xml
+!.idea/runConfigurations/
+!.idea/vcs.xml
+!.idea/modules.xml
+
+# Временные файлы редакторов
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# macOS системные файлы
+.DS_Store
+
+# Linux/Unix системные файлы
+*.swp
+*.swo
+*.~undo-tree~
+
+# Windows системные файлы
+Thumbs.db
+Desktop.ini
+
+# Custom filters
+tmpData/

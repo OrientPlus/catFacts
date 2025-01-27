@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: caxfax_db
+    environment:
+      POSTGRES_USER: caxfax
+      POSTGRES_PASSWORD: caxfaxpass
+      POSTGRES_DB: caxfax
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./caxfaxService1/internal/repo/sqlc/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - app_network
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    container_name: caxfax_kafka
+    ports:
+      - "9032:9032"
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,EXTERNAL://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    depends_on:
+      - zookeeper
+    networks:
+      - app_network
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.0
+    container_name: caxfax_zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - app_network
+
+  service1:
+    build: ./caxfaxService1
+    container_name: caxfax_service1
+    depends_on:
+      postgres:
+        condition: service_started
+      kafka:
+        condition: service_started
+    networks:
+      - app_network
+
+  service2:
+    build: ./caxfaxService2
+    container_name: caxfax_service2
+    depends_on:
+      service1:
+        condition: service_started
+      kafka:
+        condition: service_started
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  postgres_data:

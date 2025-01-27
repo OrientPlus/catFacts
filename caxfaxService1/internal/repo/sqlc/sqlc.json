@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "packages": [{
+    "schema": "init.sql",
+    "queries": "crud.sql",
+    "name": "sqlc",
+    "path": "."
+  }]
+}

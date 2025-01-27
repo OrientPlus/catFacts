@@ -1,0 +1,9 @@
+2025-01-27 11:41:33 [36m<DEBUG> Сервис запущен[0m service.go:21
+2025-01-27 11:41:38 [36m<DEBUG> Сообщение отправлено в топик service1.requests[0m broker.go:69
+2025-01-27 11:41:44 [32m<INFO> Получен факт Abraham Lincoln loved cats. He had four of them while he lived in the White House.; Длина: 82[0m service.go:39
+2025-01-27 11:41:49 [36m<DEBUG> Сообщение отправлено в топик service1.requests[0m broker.go:69
+2025-01-27 11:41:49 [32m<INFO> Получен факт Cats have 30 vertebrae (humans have 33 vertebrae during early development; 26 after the sacral and coccygeal regions fuse); Длина: 122[0m service.go:39
+2025-01-27 11:41:54 [36m<DEBUG> Сообщение отправлено в топик service1.requests[0m broker.go:69
+2025-01-27 11:41:54 [32m<INFO> Получен факт The most traveled cat is Hamlet, who escaped from his carrier while on a flight. He hid for seven weeks behind a panel on the airplane. By the time he was discovered, he had traveled nearly 373,000 miles (600,000 km).; Длина: 217[0m service.go:39
+2025-01-27 11:41:59 [36m<DEBUG> Сообщение отправлено в топик service1.requests[0m broker.go:69
+2025-01-27 11:42:00 [32m<INFO> Получен факт A cat’s eyesight is both better and worse than humans. It is better because cats can see in much dimmer light and they have a wider peripheral view. It’s worse because they don’t see color as well as humans do. Scientists believe grass appears red to cats.; Длина: 256[0m service.go:39

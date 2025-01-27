@@ -1,0 +1,12 @@
+broker_consumer_host: kafka
+broker_consumer_port: 9092
+response_topic: service2.responses
+request_topic: service1.requests
+
+request_period_sec: 5
+
+logger_config:
+  path: ./logs/
+  level: debug
+  name: logs-app.txt
+  consolewrite: false

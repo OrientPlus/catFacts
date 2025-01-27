@@ -1,0 +1,13 @@
+FROM golang:1.23.4-alpine
+
+WORKDIR /app
+
+COPY go.mod ./
+RUN go mod download
+RUN go mod tidy
+
+COPY . .
+
+RUN go build -o /caxfax /app/cmd/app
+
+CMD ["/caxfax"]
