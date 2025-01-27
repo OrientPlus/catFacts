@@ -1,10 +1,14 @@
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"time"
+)
 
 type Fact struct {
-	Message string `json:"fact"`
-	Length  int32  `json:"length"`
+	Message   string    `json:"fact"`
+	Length    int32     `json:"length"`
+	TimePoint time.Time `json:"time_point"`
 }
 
 type Request struct {

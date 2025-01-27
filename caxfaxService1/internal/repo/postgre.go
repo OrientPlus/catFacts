@@ -61,6 +61,10 @@ func (repo *RepoImpl) AddFact(ctx context.Context, fact entity.Fact) (int32, err
 			Int32: fact.Length,
 			Valid: true,
 		},
+		TimePoint: sql.NullTime{
+			Time:  fact.TimePoint,
+			Valid: true,
+		},
 	})
 	if err != nil {
 		repo.logger.Errorf("ошибка добавления записи в БД: %s", err.Error())
@@ -84,8 +88,9 @@ func (repo *RepoImpl) GetFact(ctx context.Context, factID int32) (entity.Fact, e
 	}
 
 	return entity.Fact{
-		Message: factDTO.Message.String,
-		Length:  factDTO.Length.Int32,
+		Message:   factDTO.Message.String,
+		Length:    factDTO.Length.Int32,
+		TimePoint: factDTO.TimePoint.Time,
 	}, nil
 }
 

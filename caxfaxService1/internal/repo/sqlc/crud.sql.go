@@ -11,17 +11,18 @@ import (
 )
 
 const addFact = `-- name: AddFact :one
-INSERT INTO facts (message, length)
-VALUES ($1, $2) RETURNING id
+INSERT INTO facts (message, length, time_point)
+VALUES ($1, $2, $3) RETURNING id
 `
 
 type AddFactParams struct {
-	Message sql.NullString
-	Length  sql.NullInt32
+	Message   sql.NullString
+	Length    sql.NullInt32
+	TimePoint sql.NullTime
 }
 
 func (q *Queries) AddFact(ctx context.Context, arg AddFactParams) (int32, error) {
-	row := q.db.QueryRowContext(ctx, addFact, arg.Message, arg.Length)
+	row := q.db.QueryRowContext(ctx, addFact, arg.Message, arg.Length, arg.TimePoint)
 	var id int32
 	err := row.Scan(&id)
 	return id, err
@@ -49,7 +50,7 @@ func (q *Queries) DeleteFactByMessage(ctx context.Context, message sql.NullStrin
 
 const getFactByID = `-- name: GetFactByID :one
 
-SELECT id, message, length
+SELECT id, message, length, time_point
 FROM facts
 WHERE id = $1
 `
@@ -58,12 +59,17 @@ WHERE id = $1
 func (q *Queries) GetFactByID(ctx context.Context, id int32) (Fact, error) {
 	row := q.db.QueryRowContext(ctx, getFactByID, id)
 	var i Fact
-	err := row.Scan(&i.ID, &i.Message, &i.Length)
+	err := row.Scan(
+		&i.ID,
+		&i.Message,
+		&i.Length,
+		&i.TimePoint,
+	)
 	return i, err
 }
 
 const getFactByMessage = `-- name: GetFactByMessage :one
-SELECT id, message, length
+SELECT id, message, length, time_point
 FROM facts
 WHERE message = $1
 `
@@ -71,7 +77,12 @@ WHERE message = $1
 func (q *Queries) GetFactByMessage(ctx context.Context, message sql.NullString) (Fact, error) {
 	row := q.db.QueryRowContext(ctx, getFactByMessage, message)
 	var i Fact
-	err := row.Scan(&i.ID, &i.Message, &i.Length)
+	err := row.Scan(
+		&i.ID,
+		&i.Message,
+		&i.Length,
+		&i.TimePoint,
+	)
 	return i, err
 }
 

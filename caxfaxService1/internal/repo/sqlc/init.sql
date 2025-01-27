@@ -3,6 +3,7 @@ CREATE TABLE facts
 (
     id SERIAL PRIMARY KEY,
     message TEXT,
-    length INT
+    length INT,
+    time_point TIMESTAMPTZ
 );
 

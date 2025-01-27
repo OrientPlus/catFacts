@@ -9,7 +9,8 @@ import (
 )
 
 type Fact struct {
-	ID      int32
-	Message sql.NullString
-	Length  sql.NullInt32
+	ID        int32
+	Message   sql.NullString
+	Length    sql.NullInt32
+	TimePoint sql.NullTime
 }

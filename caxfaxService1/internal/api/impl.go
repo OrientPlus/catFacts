@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+	"time"
 )
 
 type CatFunFact struct {
@@ -44,6 +45,7 @@ func (c *CatFunFact) GetFunFact() (entity.Fact, error) {
 		c.logger.Errorf("Не удалось анмаршаллить ответ от API: %s", err.Error())
 		return entity.Fact{}, err
 	}
+	fact.TimePoint = time.Now()
 
 	return fact, nil
 }

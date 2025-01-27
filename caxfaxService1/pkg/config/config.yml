@@ -8,6 +8,6 @@ broker_consumer_port: 9092
 
 logger_config:
   path: ./logs/
-  level: debug
+  level: info
   name: logs-app.txt
-  consolewrite: true
+  consolewrite: false

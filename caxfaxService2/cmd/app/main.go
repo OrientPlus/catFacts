@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	time.Sleep(time.Second * 7)
+	time.Sleep(time.Second * 10)
 	config, err := config.LoadConfig("./pkg/config/config.yml")
 	if err != nil {
 		fmt.Printf("Не удалось спарсить конфигурационный файл: %s", err.Error())
